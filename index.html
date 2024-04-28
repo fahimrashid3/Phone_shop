@@ -25,8 +25,16 @@
 
 
 
+
+
         <!-- phone card section using api -->
         <section>
+            <!-- spinner or loading progress -->
+
+            <div id="loading_dots" class="text-center my-40 hidden">
+                <span class="loading loading-dots loading-lg"></span>
+
+            </div>
             <div id="phone-container"  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mx-2 md:mx-10 lg:mx-36" >
                 <!-- <div class="card w-96 bg-base-100 shadow-xl">
                     <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
@@ -38,6 +46,10 @@
                       </div>
                     </div>
                   </div> -->
+
+            </div>
+            <div class="flex justify-center">
+                <button id="show_all" class="btn btn-ghost hidden mt-5">Show all</button>
 
             </div>
         </section>

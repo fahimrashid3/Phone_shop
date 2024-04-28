@@ -12,6 +12,20 @@ const displayPhons = phones=>{
     const phoneContainer =document.getElementById('phone-container')
     phoneContainer.innerHTML='';
 
+    const showAllBtn=document.getElementById('show_all');
+    if(phones.length>12){
+      showAllBtn.classList.remove('hidden');
+    }
+    else{
+      showAllBtn.classList.add('hidden');
+    }
+    phones=phones.slice(0,12);
+
+    // toggle loading dots control hide
+    // const toggleLoadingDots=document.getElementById('loading_dots');
+    // toggleLoadingDots.classList.add('hidden')
+
+
     phones.forEach(phone =>{
         // create a div
         const phoneCard = document.createElement('div');
@@ -26,8 +40,10 @@ const displayPhons = phones=>{
           </div>
         </div> `
         phoneContainer.appendChild(phoneCard);
-    })
+    });
 
+    // hight loading spinner
+    toggleLoadingDots(false);
 }
 
 // loadPhone();
@@ -35,12 +51,24 @@ const displayPhons = phones=>{
 // search handler 
  
 const searchHandler= () =>{
-
+  toggleLoadingDots(true);
   const searchInputField=document.getElementById('search_input');
   const searchItem=searchInputField.value;
-  console.log(searchItem);
+  // console.log(searchItem);
   loadPhone(searchItem);
-
 }
 
 
+
+// loading Spinner control
+const toggleLoadingDots = (isLoading) => {
+
+  if(isLoading==true){
+    const loadingSpinner=document.getElementById('loading_dots');
+    loadingSpinner.classList.remove('hidden');
+  }
+  else{
+    loadingSpinner.classList.add('hidden');
+
+  }
+}
