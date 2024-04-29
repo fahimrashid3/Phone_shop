@@ -1,12 +1,12 @@
-const loadPhone = async (searchText)=>{
+const loadPhone = async (searchText , isShowAll)=>{
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
     const dataList = await res.json();
     const phones = dataList.data;
-    displayPhons(phones);
-    // console.log(phones);
+    displayPhons(phones,isShowAll);
+    // console.log(isShowAll);
 }
 
-const displayPhons = phones=>{
+const displayPhons = (phones, isShowAll)=>{
     // console.log(phones);
 
     const phoneContainer =document.getElementById('phone-container')
@@ -19,7 +19,10 @@ const displayPhons = phones=>{
     else{
       showAllBtn.classList.add('hidden');
     }
+
+    if(!isShowAll){
     phones=phones.slice(0,12);
+    }
 
     // toggle loading dots control hide
     // const toggleLoadingDots=document.getElementById('loading_dots');
@@ -36,26 +39,25 @@ const displayPhons = phones=>{
           <h2 class="text-center font-bold text-2xl">${phone.phone_name}</h2>
           <p class="text-center">${phone.slug}</p>
           <div class="card-actions justify-center">
-            <button class="btn btn-primary mt-5">Buy Now</button>
+            <button onclick="showDetails('${phone.slug}')" class="btn btn-primary mt-5">Show details</button>
           </div>
         </div> `
         phoneContainer.appendChild(phoneCard);
     });
-
     // hight loading spinner
-    toggleLoadingDots(false);
+    // toggleLoadingDots(false);
 }
 
 // loadPhone();
 
 // search handler 
  
-const searchHandler= () =>{
-  toggleLoadingDots(true);
+const searchHandler= (isShowAll) =>{
+  // toggleLoadingDots(true);
   const searchInputField=document.getElementById('search_input');
   const searchItem=searchInputField.value;
   // console.log(searchItem);
-  loadPhone(searchItem);
+  loadPhone(searchItem, isShowAll);
 }
 
 
@@ -63,7 +65,7 @@ const searchHandler= () =>{
 // loading Spinner control
 const toggleLoadingDots = (isLoading) => {
 
-  if(isLoading==true){
+  if(isLoading){
     const loadingSpinner=document.getElementById('loading_dots');
     loadingSpinner.classList.remove('hidden');
   }
@@ -71,4 +73,18 @@ const toggleLoadingDots = (isLoading) => {
     loadingSpinner.classList.add('hidden');
 
   }
+}
+
+
+// handel show_all section 
+const handelShowAll = () =>{
+  searchHandler(true);
+
+}
+
+// handel show details click 
+
+const showDetails = async (id) =>{
+
+  console.log(id)
 }
