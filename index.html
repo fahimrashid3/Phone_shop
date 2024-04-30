@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phone shop</title>
 
     <!-- daisy us cdn installation -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h2 class="text-6xl text-center m-20 font-bold">Phone Shop</h2>
-
+      <h2 class="text-6xl text-center m-20 font-bold">Phone Shop</h2>
     </header>
     <main class="mx-auto">
-        <!-- search section  -->
-        <div class="flex justify-center gap-4" >
-            <input id="search_input" type="text" placeholder="Search..." class="input input-bordered w-full max-w-xs flex " />
-            <button onclick="searchHandler()" class="btn btn-ghost">Search</button>
+      <!-- search section  -->
+      <div class="flex justify-center gap-4">
+        <input
+          id="search_input"
+          type="text"
+          placeholder="Search..."
+          class="input input-bordered w-full max-w-xs flex"
+        />
+        <button onclick="searchHandler()" class="btn btn-ghost">Search</button>
+      </div>
 
+      <!-- phone card section using api -->
+      <section>
+        <!-- spinner or loading progress -->
 
+        <div id="loading_dots" class="text-center my-40 hidden">
+          <span class="loading loading-dots loading-lg"></span>
         </div>
-
-
-
-
-
-        <!-- phone card section using api -->
-        <section>
-            <!-- spinner or loading progress -->
-
-            <div id="loading_dots" class="text-center my-40 hidden">
-                <span class="loading loading-dots loading-lg"></span>
-
-            </div>
-            <div id="phone-container"  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mx-2 md:mx-10 lg:mx-36" >
-                <!-- <div class="card w-96 bg-base-100 shadow-xl">
+        <div
+          id="phone-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mx-2 md:mx-10 lg:mx-36"
+        >
+          <!-- <div class="card w-96 bg-base-100 shadow-xl">
                     <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
                     <div class="card-body">
                       <h2 class="card-title">Shoes!</h2>
@@ -46,21 +50,34 @@
                       </div>
                     </div>
                   </div> -->
+        </div>
+        <!-- show all button  -->
+        <div class="text-center my-8">
+          <button
+            id="show_all"
+            onclick="handelShowAll()"
+            class="btn btn-ghost hidden mt-5"
+          >
+            Show all
+          </button>
+        </div>
+      </section>
 
-            </div>
-            <!-- show all button  -->
-            <div class="text-center my-8">
-                <button id="show_all" onclick="handelShowAll()" class="btn btn-ghost hidden mt-5">Show all</button>
-
-            </div>
-        </section>
-
+      <!-- Open the modal using ID.showModal() method -->
+      <!-- Open the modal using ID.showModal() method -->
+      <dialog id="show_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box text-center" id="modal_field">
+          <div class="modal-action">
+            <form method="dialog" class="mx-auto">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
-    <footer>
-
-    </footer>
-
+    <footer></footer>
 
     <script src="js/phone.js"></script>
-</body>
+  </body>
 </html>
